@@ -1,24 +1,37 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version - ruby 2.5.3p105
 
-Things you may want to cover:
 
-* Ruby version
+* Database creation - Use gem sqlite3 in local and change the database.yml file 
+run bundle install 
+change database.yml to 
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
-* System dependencies
+development:
+  <<: *default
+  database: db/development.sqlite3
 
-* Configuration
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: db/test.sqlite3
 
-* Database creation
+production:
+  <<: *default
+  database: db/production.sqlite3
+##################################
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+migrate the db using rake db:migrate
+run server using rails s
+go to http://localhost:3000/users/sign_in
