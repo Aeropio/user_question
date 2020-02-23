@@ -1,7 +1,6 @@
 
 * Ruby version - ruby 2.5.3p105
 
-
 * Database creation - Use gem sqlite3 in local and change the database.yml file 
 run bundle install 
 change database.yml to 
